@@ -1,6 +1,6 @@
 <script lang="ts">
-  // Inline adapter for io icons check-circle-solid, spinner, warning, xmark-circle-solid and pause.
-  // No io icon package is installed; the adjacent status text carries the accessible meaning.
+  // Local status icons for completed, running, attention, failed, and paused stages.
+  // The adjacent status text carries the accessible meaning.
   import type { StageTone } from './platform';
 
   let { status, tone, step }: { status: string; tone: StageTone; step: number } = $props();

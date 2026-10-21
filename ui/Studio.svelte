@@ -197,7 +197,7 @@
         <a href="{temporalUi}/{encodeURIComponent(sessionId)}" target="_blank" rel="noreferrer">open in Temporal ↗</a>
       {/if}
     </div>
-    <button class="run io-button io-button--primary" onclick={run} aria-busy={running} disabled={!code || busy} title="Run the flow (⌘/Ctrl + Shift + Enter)">
+    <button class="run studio-button studio-button--primary" onclick={run} aria-busy={running} disabled={!code || busy} title="Run the flow (⌘/Ctrl + Shift + Enter)">
       {#if running}<i class="spinner"></i> Running…{:else}<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.8v10.4L13 8z" /></svg> Run flow{/if}
     </button>
   </header>

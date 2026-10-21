@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <button class="new io-button io-button--primary" onclick={onnew} class:active={!current}>
+  <button class="new studio-button studio-button--primary" onclick={onnew} class:active={!current}>
     <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" /></svg>
     New flow
   </button>
@@ -99,9 +99,9 @@
     border-radius: 7px;
     font-weight: 600;
   }
-  .new.io-button--primary { background: var(--color-interactive-primary); border-color: var(--color-interactive-primary); color: var(--color-content-inverse-primary); }
-  .new.io-button--primary:hover:not(:disabled) { background: var(--color-interactive-primary-hover); border-color: var(--color-interactive-primary-hover); }
-  .new.io-button--primary:active:not(:disabled) { background: var(--color-interactive-primary-press); }
+  .new.studio-button--primary { background: var(--color-interactive-primary); border-color: var(--color-interactive-primary); color: var(--color-content-inverse-primary); }
+  .new.studio-button--primary:hover:not(:disabled) { background: var(--color-interactive-primary-hover); border-color: var(--color-interactive-primary-hover); }
+  .new.studio-button--primary:active:not(:disabled) { background: var(--color-interactive-primary-press); }
   .new svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 
   .search { position: relative; }

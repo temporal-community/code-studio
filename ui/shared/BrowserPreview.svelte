@@ -32,10 +32,10 @@
   {:else if !preview.available}<p>This project needs a preview adapter. Code Studio’s Vite frontend is supported.</p>
   {:else}
     <div class="actions">
-      <button class="io-button io-button--primary" disabled={busy} onclick={() => void act('start')}>{busy ? 'Working…' : preview.url ? 'Refresh preview' : 'Build preview'}</button>
+      <button class="studio-button studio-button--primary" disabled={busy} onclick={() => void act('start')}>{busy ? 'Working…' : preview.url ? 'Refresh preview' : 'Build preview'}</button>
       {#if preview.url}
-        <a class="io-button io-button--secondary" href={preview.url} target="_blank" rel="noopener noreferrer">Open preview ↗</a>
-        <button class="io-button io-button--quiet" disabled={busy} onclick={() => void act('stop')}>Stop preview</button>
+        <a class="studio-button studio-button--secondary" href={preview.url} target="_blank" rel="noopener noreferrer">Open preview ↗</a>
+        <button class="studio-button studio-button--quiet" disabled={busy} onclick={() => void act('stop')}>Stop preview</button>
       {/if}
     </div>
     {#if busy}<p role="status">Preparing the preview. Building can take up to two minutes.</p>{/if}
@@ -60,7 +60,7 @@
   h3,h4 { margin-block:0 12px; } h4 { margin-block-start:28px; }
   p { color:var(--color-content-secondary); line-height:1.6; overflow-wrap:anywhere; }
   .actions,.evidence-heading { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
-  .actions .io-button { min-height:44px; }
+  .actions .studio-button { min-height:44px; }
   .evidence-heading { justify-content:space-between; } .evidence-heading strong { overflow-wrap:anywhere; }
   .metadata { font-size:12px; } .error,.warning { padding:12px; border:1px solid currentColor; border-radius:7px; }
   .error { color:var(--color-content-danger); } .warning { color:var(--color-content-primary); }

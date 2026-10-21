@@ -110,7 +110,7 @@ async def test_experiment_arms_keep_captured_references_after_guidance_update(se
     await service.create(request(root), auto_start=False)
     if legacy_catalog:
         legacy_files = {POLICY_PATH: 'Previously saved policy',
-                        PREFIX + 'components/io/example.json': '{"example": true}'}
+                        PREFIX + 'components/example.json': '{"example": true}'}
         monkeypatch.setattr('cooperative.experiments.reference_files', lambda: legacy_files)
     await service.experiments.create(experiment_request())
     experiment = service.experiments.get('compare1')

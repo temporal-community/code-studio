@@ -16,7 +16,10 @@ from .support_instructions import SupportInstructions
 from sdlc.models import digest
 from sdlc.templates import PROJECT_FILES
 from features.project import PROJECT_FILES as FEATURE_FILES
-from cooperative.definitions import PROJECT_FILES as STAGE_FILES, DEFINITIONS, LEGACY_PROMPT_HASHES, files_for
+from cooperative.definitions import (
+    PROJECT_FILES as STAGE_FILES, DEFINITIONS, LEGACY_PROMPT_HASHES,
+    PREVIOUS_UI_PROMPT_HASHES, files_for,
+)
 
 SEED = '''"""A Python project shared by people and agents."""
 
@@ -106,13 +109,16 @@ class WorkspaceStore:
         self.record('migration', 'Code Studio', 'Updated default Planner budget to 24 turns; custom settings are preserved')
 
     def _upgrade_stage_prompts(self):
-        """Migrate original prompt seeds once without replacing custom playbooks."""
+        """Upgrade known defaults, including prior automatic upgrades, without replacing user edits."""
         for stage, expected_hash in LEGACY_PROMPT_HASHES.items():
             name = files_for(stage)[1]
             doc = self.documents[name]
-            if hashlib.sha256(doc.text.encode()).hexdigest() != expected_hash:
+            if hashlib.sha256(doc.text.encode()).hexdigest() not in (
+                expected_hash, PREVIOUS_UI_PROMPT_HASHES.get(stage),
+            ):
                 continue
-            if any(node['deleted'] or node['id'].split(':')[1] != 'seed' for node in doc.nodes.values()):
+            if any(node['id'].split(':')[1] not in ('seed', 'stage-prompts-upgrade')
+                   for node in doc.nodes.values()):
                 continue
             doc.apply(doc.replace(0, len(doc.text), STAGE_FILES[name], 'stage-prompts-upgrade'))
             self.revision += 1

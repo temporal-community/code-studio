@@ -40,10 +40,10 @@
   {#if error}<p class="error" role="alert">{error}</p>{/if}
   <p class="status" role="status">{message}</p>
   <div class="actions">
-    <button class="io-button io-button--primary" type="submit" disabled={busy || !dirty || !draft.trim()}>{busy ? 'Working…' : 'Save instructions'}</button>
-    <button class="io-button io-button--secondary" type="button" disabled={busy || !dirty} onclick={() => change(saved.content)}>Discard changes</button>
-    <button class="io-button io-button--secondary" type="button" disabled={busy || draft === saved.default_content} onclick={() => change(saved.default_content)}>Use default instructions</button>
-    <button class="io-button io-button--secondary" type="button" disabled={busy} onclick={() => void update(false)}>Reload saved instructions</button>
+    <button class="studio-button studio-button--primary" type="submit" disabled={busy || !dirty || !draft.trim()}>{busy ? 'Working…' : 'Save instructions'}</button>
+    <button class="studio-button studio-button--secondary" type="button" disabled={busy || !dirty} onclick={() => change(saved.content)}>Discard changes</button>
+    <button class="studio-button studio-button--secondary" type="button" disabled={busy || draft === saved.default_content} onclick={() => change(saved.default_content)}>Use default instructions</button>
+    <button class="studio-button studio-button--secondary" type="button" disabled={busy} onclick={() => void update(false)}>Reload saved instructions</button>
   </div>
   <p class="note">Reload replaces your draft with the latest saved version. Default instructions are only applied after you save.</p>
 </form>
@@ -56,7 +56,7 @@
   textarea:focus-visible { outline:2px solid var(--color-content-brand); outline-offset:3px; }
   textarea:disabled { opacity:.65; }
   .actions { display:flex; flex-wrap:wrap; gap:8px; }
-  .actions .io-button { min-height:44px; }
+  .actions .studio-button { min-height:44px; }
   .error { color:var(--color-content-danger); }
   .status:empty { display:none; }
   .note, .saved { font-size:12px; }

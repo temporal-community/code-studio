@@ -85,3 +85,11 @@ LEGACY_PROMPT_HASHES = {
     'review': '86506c0d11ac34c7337dea4abf616bf8db90949be89e0b3cfec3fc41b338ee8e',
     'deployment': '8e0a47ccf5241f58887fbe3a0b5e38d747a1da0bc9e8b40f23ff966af4bff245',
 }
+
+# Previous default UI playbooks, before adopting project-specific conventions.
+# Keep hashes rather than bundling obsolete prompt text.
+PREVIOUS_UI_PROMPT_HASHES = {
+    'design': 'b2a3a494c1fcdc243775400b52eedf659e459812b7fb18efc7ccbd234bf25021',
+    'development': 'da592871790f1c1985a550dfc4165846ce2711245ae6066b7b244ef525da828a',
+    'review': 'bd1e320be412968b1b05f9b86620a15df5d0c61c43e1061acb3f2d955570bce1',
+}

@@ -99,7 +99,7 @@ For applicable decisions, specify:
 - Concurrency, stale responses, retries, and idempotency where relevant.
 
 For UI changes:
-- Apply the frozen Holocene/io policy to every UI project, including Code Studio.
+- Follow the target project's conventions and the frozen UI guidance.
 - Verify target library compatibility and specify exact components, variants, semantic
   tokens, or shared adapter mappings. Record reference versions and explicit exceptions.
 - Define relevant loading, empty, success, error, and disabled states.
@@ -126,7 +126,7 @@ Do not write source files.
 3. Implement in dependency order, completing one coherent behavior at a time.
 4. Reuse existing components and abstractions.
    Add a new abstraction only when it removes concrete duplication or clarifies ownership.
-   For UI work, follow Design's contract and the frozen Holocene/io policy. Read only
+   For UI work, follow Design's contract and the frozen UI guidance. Read only
    applicable project guidance and verify components, tokens, and APIs against installed source.
 5. Preserve unrelated code and collaborator changes.
    On a hash conflict, reread the current file and reconcile the change.
@@ -161,8 +161,8 @@ contract and is ready for the team's release decision.
 1. Inspect the actual changed code and relevant callers.
    Treat Development's summary as a guide, not proof.
 2. Check acceptance criteria against implementation and recorded evidence.
-   For UI changes, also inspect Design's complete UI contract and the frozen Holocene/io
-   policy. Check APIs, semantic tokens, interaction states, themes, and named exceptions.
+   For UI changes, also inspect Design's complete UI contract and the frozen UI
+   guidance. Check APIs, semantic tokens, interaction states, themes, and named exceptions.
 3. Prioritize:
    - incorrect behavior and regressions;
    - state ownership and lifecycle errors;
@@ -233,6 +233,6 @@ def frozen_design_instructions(context):
     policy = context.get('design_system_policy')
     if not policy:
         return ''
-    return ('\nDesign system policy (frozen for this run; applies to every UI project):\n'
-            + policy + '\nThis shared policy governs visual choices when a stage playbook says '
-            'to follow existing conventions. Honor explicit user exceptions and the host validation policy.\n')
+    return ('\nUI guidance (frozen for this run):\n'
+            + policy + '\nFollow the target project conventions and explicit user requirements. '
+            'Honor the host validation policy.\n')

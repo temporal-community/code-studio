@@ -15,7 +15,7 @@
   }));
 </script>
 
-<button class="theme-toggle io-button io-button--quiet" type="button" aria-label="Toggle color theme" aria-pressed={mode === 'dark'} onclick={() => theme.toggle()}>
+<button class="theme-toggle studio-button studio-button--quiet" type="button" aria-label="Toggle color theme" aria-pressed={mode === 'dark'} onclick={() => theme.toggle()}>
   {#key mode}
     {#if mode === 'light'}
       <svg class="theme-icon sun" class:animate={hasModeChanged} viewBox="0 0 24 24" aria-hidden="true" focusable="false">

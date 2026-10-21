@@ -1,6 +1,8 @@
 """Starter prompt upgrades preserve custom edits and frozen snapshots."""
+import hashlib
+
 import pytest
-from cooperative.definitions import STAGES, PROJECT_FILES, files_for
+from cooperative.definitions import STAGES, PROJECT_FILES, PREVIOUS_UI_PROMPT_HASHES, files_for
 from cooperative.models import validate_project
 from workspace.store import WorkspaceStore
 from tests.test_feature_project import replace
@@ -41,6 +43,36 @@ def test_intentionally_restored_old_prompt_is_not_overwritten(tmp_path):
     store.close()
     store = WorkspaceStore(tmp_path)
     assert store.file('planner_instructions.md').text == OLD_PROMPTS['planner']
+    assert store.revision == revision
+    store.close()
+
+
+@pytest.mark.parametrize('actor', ['seed', 'stage-prompts-upgrade', 'editor'])
+def test_previous_ui_defaults_upgrade_without_replacing_custom_edits_or_frozen_inputs(tmp_path, monkeypatch, actor):
+    previous = 'Previously saved UI instructions.\n'
+    monkeypatch.setitem(PREVIOUS_UI_PROMPT_HASHES, 'design', hashlib.sha256(previous.encode()).hexdigest())
+    name = files_for('design')[1]
+    if actor == 'seed':
+        # Start with an untouched seed, then make its hash eligible for the next restart.
+        monkeypatch.setitem(PREVIOUS_UI_PROMPT_HASHES, 'design', '')
+        (tmp_path / name).write_text(previous)
+    store = WorkspaceStore(tmp_path)
+    if actor != 'seed':
+        doc = store.file(name)
+        doc.apply(doc.replace(0, len(doc.text), previous, actor))
+        store._save_document()
+    frozen = store.agent_project_snapshot('design')
+    store.close()
+
+    monkeypatch.setitem(PREVIOUS_UI_PROMPT_HASHES, 'design', hashlib.sha256(previous.encode()).hexdigest())
+    store = WorkspaceStore(tmp_path)
+    expected = previous if actor == 'editor' else PROJECT_FILES[name]
+    assert store.file(name).text == expected
+    assert frozen['files'][name] == previous
+    revision = store.revision
+    store.close()
+    store = WorkspaceStore(tmp_path)
+    assert store.file(name).text == expected
     assert store.revision == revision
     store.close()
 

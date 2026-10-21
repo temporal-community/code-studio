@@ -69,7 +69,7 @@
             <h4>{names[run.stage]} agent</h4><p>{turn.answer}</p>
             {#if turn.suggested_requirement}
               <div class="suggestion"><h4>Suggested requirements · review before submitting</h4><p>{turn.suggested_requirement}</p>
-                {#if current}<button class="io-button io-button--secondary" disabled={!available || !!requirements.trim()} onclick={() => void useSuggestion(turn.suggested_requirement)}>Use suggested requirements</button>{/if}
+                {#if current}<button class="studio-button studio-button--secondary" disabled={!available || !!requirements.trim()} onclick={() => void useSuggestion(turn.suggested_requirement)}>Use suggested requirements</button>{/if}
               </div>
             {/if}
           {:else if turn.status === 'pending'}<p role="status">The agent is preparing an explanation…</p>
@@ -84,7 +84,7 @@
       <textarea id={'ask-' + run.id} bind:value={question} rows="3" maxlength="4000" disabled={!canAct || asking || submitting}
         placeholder="What does this mean? Can you show an example and recommend an option?" aria-describedby={'ask-help-' + run.id}></textarea>
       <div class="action"><p id={'ask-help-' + run.id}>Ask for an explanation or discuss options. This does not change requirements or resume work.</p>
-        <button class="io-button io-button--secondary" type="submit" disabled={!available || !enabled || (pending && !questionRequest) || !question.trim()}>{asking ? 'Asking agent…' : 'Ask agent'}</button>
+        <button class="studio-button studio-button--secondary" type="submit" disabled={!available || !enabled || (pending && !questionRequest) || !question.trim()}>{asking ? 'Asking agent…' : 'Ask agent'}</button>
       </div>
     </form>
     <form onsubmit={(event) => { event.preventDefault(); void submit(); }}>
@@ -92,7 +92,7 @@
       <textarea id={'requirements-' + run.id} bind:this={requirementsInput} bind:value={requirements} rows="5" maxlength="4000"
         disabled={!canAct || asking || submitting} placeholder="Once you have decided, describe how you want this to work…" aria-describedby={'requirements-help-' + run.id}></textarea>
       <div class="action"><p id={'requirements-help-' + run.id}>Adds requirements to Team input and updates the scope. Then choose Resume workflow to restart from Ideation and review a new plan.</p>
-        <button class="io-button io-button--primary" type="submit" disabled={!available || !requirements.trim()}>{submitting ? 'Submitting…' : 'Submit requirements'}</button>
+        <button class="studio-button studio-button--primary" type="submit" disabled={!available || !requirements.trim()}>{submitting ? 'Submitting…' : 'Submit requirements'}</button>
       </div>
     </form>
     {#if !enabled}<p>Start just dev with an OpenAI key to ask the agent. You can still submit requirements.</p>{/if}
@@ -112,7 +112,7 @@
   textarea { box-sizing:border-box; width:100%; min-height:100px; resize:vertical; padding:12px; border:1px solid var(--color-border-secondary); border-radius:6px; background:var(--color-surface-primary); color:var(--color-content-primary); font:14px/1.7 var(--sans); }
   textarea:focus-visible { outline:2px solid var(--color-content-brand); outline-offset:3px; } textarea:disabled { opacity:.65; }
   .action { display:flex; align-items:center; gap:16px; justify-content:space-between; margin-block-start:8px; }
-  .action p { margin:0; max-width:65ch; font-size:12px; } .io-button { min-height:44px; flex-shrink:0; }
+  .action p { margin:0; max-width:65ch; font-size:12px; } .studio-button { min-height:44px; flex-shrink:0; }
   article + article { border-block-start:1px solid var(--color-border-primary); padding-block-start:16px; margin-block-start:16px; }
   .suggestion { padding:16px; border:1px solid var(--color-border-primary); border-radius:6px; background:var(--color-surface-secondary); }
   .error { color:var(--color-content-danger); } .status:empty { display:none; }

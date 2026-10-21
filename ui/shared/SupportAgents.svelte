@@ -61,7 +61,7 @@
               <p role="status">Loading instructions…</p>
             {:else if errors[agent.id]}
               <p class="error" role="alert">{errors[agent.id]}</p>
-              <button class="io-button io-button--secondary" onclick={() => void loadDetails(agent.id)}>Retry loading instructions</button>
+              <button class="studio-button studio-button--secondary" onclick={() => void loadDetails(agent.id)}>Retry loading instructions</button>
             {:else if agentDetails}
               <p>{agentDetails.instructions_note}</p>
               {#if agent.id === 'studio-designer'}
@@ -69,7 +69,7 @@
                 <select id="studio-prompt-target" bind:value={studioTarget}>
                   {#each agentDetails.prompts as prompt}<option value={prompt.id}>{prompt.label}</option>{/each}
                 </select>
-                <a class="io-button io-button--secondary" href={'/?view=studio&agent=' + studioTarget}>Open {agentDetails.prompts.find(prompt => prompt.id === studioTarget)?.label} Studio</a>
+                <a class="studio-button studio-button--secondary" href={'/?view=studio&agent=' + studioTarget}>Open {agentDetails.prompts.find(prompt => prompt.id === studioTarget)?.label} Studio</a>
               {/if}
               {#if agent.id === 'improvement-advisor'}
                 <p>Creates the title, work description, and acceptance criteria before a feature starts. The workflow’s Ideation agent runs after you start the feature and has separate instructions in Agent Studio.</p>
@@ -120,6 +120,6 @@
   label { display:block; margin-block:16px 8px; font-size:13px; }
   select { font:inherit; font-size:13px; min-height:44px; max-width:100%; padding:8px 12px; border:1px solid var(--color-border-secondary); border-radius:6px; background:var(--color-surface-primary); color:var(--color-content-primary); }
   .error, .instructions > p.error { color:var(--color-content-danger); }
-  .instructions .io-button { min-height:44px; }
+  .instructions .studio-button { min-height:44px; }
   @media(max-width:800px) { summary { align-items:start; flex-direction:column; gap:16px; } .quick-facts { text-align:start; } .facts { grid-template-columns:1fr; } }
 </style>
