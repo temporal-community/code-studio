@@ -1,0 +1,14 @@
+.venv/
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+temporal.toml
+.local/
+.pytest_cache/
+.ruff_cache/
+.benchmarks/
+__pycache__/
+*.py[cod]
+.DS_Store

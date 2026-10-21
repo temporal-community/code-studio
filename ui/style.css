@@ -1,0 +1,51 @@
+/* Central semantic io roles, with compatibility aliases for existing screens. */
+:root, :root[data-theme="dark"] {
+ color-scheme: dark;
+ --color-background-primary:#111111; --color-content-primary:#fbfbfa; --color-content-secondary:#c3c2bb; --color-content-tertiary:#9a9693;
+ --color-content-brand:#8da4ef; --color-content-information:#8ec8f6; --color-content-success:#8eceaa; --color-content-warning:#e9c162; --color-content-danger:#f4a9aa; --color-content-inverse-primary:#fbfbfa;
+ --color-surface-primary:#191919; --color-surface-secondary:#222222; --color-surface-tertiary:#2a2a2a; --color-surface-brand:#1f2d5c;
+ --color-surface-overlay-primary:color-mix(in srgb,#756f6d 5%,transparent); --color-surface-overlay-secondary:color-mix(in srgb,#756f6d 10%,transparent);
+ --color-border-primary:color-mix(in srgb,#756f6d 30%,transparent); --color-border-secondary:color-mix(in srgb,#756f6d 50%,transparent);
+ --color-interactive-primary:#3a5bc7; --color-interactive-primary-hover:#3358d4; --color-interactive-primary-press:#3e63dd;
+ --color-interactive-secondary:#191919; --color-interactive-secondary-hover:color-mix(in srgb,#3e63dd 10%,transparent); --color-interactive-secondary-press:color-mix(in srgb,#3e63dd 20%,transparent);
+ --color-interactive-tertiary:transparent; --color-interactive-tertiary-hover:color-mix(in srgb,#756f6d 15%,transparent); --color-interactive-tertiary-press:color-mix(in srgb,#756f6d 10%,transparent);
+ --color-action-success:#2b9a66; --shadow:0 10px 30px rgba(0,0,0,.45);
+ /* Centralized syntax palette: io does not define code-highlighting roles. */
+ --syn-keyword:#c792ea; --syn-string:#a8dc76; --syn-number:#f78c6c; --syn-comment:#89939b; --syn-fn:#82aaff; --syn-host:#ffcb6b; --syn-builtin:#89ddff; --syn-op:#89ddff; --syn-const:#ff9cac;
+}
+:root[data-theme="light"] {
+ color-scheme:light;
+ --color-background-primary:#f8f8f8; --color-content-primary:#1e1d1b; --color-content-secondary:#544e4c; --color-content-tertiary:#716b69;
+ --color-content-brand:#3e63dd; --color-content-information:#113264; --color-content-success:#193b2d; --color-content-warning:#4f3422; --color-content-danger:#641723; --color-content-inverse-primary:#fbfbfa;
+ --color-surface-primary:#fbfbfa; --color-surface-secondary:#f7f7f5; --color-surface-tertiary:#f0efec; --color-surface-brand:#d2deff;
+ --color-surface-overlay-primary:color-mix(in srgb,#2a2a2a 5%,transparent); --color-surface-overlay-secondary:color-mix(in srgb,#2a2a2a 10%,transparent);
+ --color-border-primary:color-mix(in srgb,#756f6d 25%,transparent); --color-border-secondary:color-mix(in srgb,#756f6d 45%,transparent);
+ --color-interactive-primary:#3e63dd; --color-interactive-primary-hover:#3358d4; --color-interactive-primary-press:#3a5bc7;
+ --color-interactive-secondary:#fbfbfa; --color-interactive-secondary-hover:color-mix(in srgb,#3e63dd 10%,transparent); --color-interactive-secondary-press:color-mix(in srgb,#3e63dd 15%,transparent);
+ --color-interactive-tertiary:transparent; --color-interactive-tertiary-hover:color-mix(in srgb,#2a2a2a 10%,transparent); --color-interactive-tertiary-press:color-mix(in srgb,#2a2a2a 5%,transparent);
+ --color-action-success:#218358; --shadow:0 10px 30px rgba(30,40,70,.12);
+ --syn-keyword:#8a3ffc; --syn-string:#2f7d1d; --syn-number:#c2410c; --syn-comment:#737d8e; --syn-fn:#1d5fd1; --syn-host:#b45309; --syn-builtin:#0e7490; --syn-op:#0e7490; --syn-const:#be185d;
+}
+:root {
+ --bg:var(--color-background-primary); --panel:var(--color-surface-primary); --panel-2:var(--color-surface-secondary); --panel-3:var(--color-surface-tertiary);
+ --line:var(--color-border-primary); --line-2:var(--color-border-secondary); --ink:var(--color-content-primary); --muted:var(--color-content-secondary); --faint:var(--color-content-tertiary);
+ --accent:var(--color-content-brand); --accent-ink:var(--color-content-inverse-primary); --accent-soft:var(--color-surface-brand);
+ --cyan:var(--color-content-information); --good:var(--color-content-success); --warn:var(--color-content-warning); --bad:var(--color-content-danger);
+ /* Bright status fills (Radix step 9, identical in both themes) for small indicators such as progress segments. */
+ --status-fill-success:#30a46c; --status-fill-running:#3e63dd; --status-fill-warning:#ffc53d; --status-fill-danger:#e5484d;
+ --status-glyph:#ffffff; --status-glyph-warning:#1e1d1b;
+ --sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"Noto Sans Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace; --radius:10px;
+}
+*{box-sizing:border-box} html,body{height:100%} body{margin:0;background:var(--color-background-primary);color:var(--color-content-primary);font:13px/1.5 var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
+button,input,textarea,select{font:inherit;color:inherit} button{cursor:pointer} button:disabled{cursor:not-allowed}
+:focus-visible{outline:2px solid var(--color-content-brand);outline-offset:2px} code,pre,kbd{font-family:var(--mono)} ::selection{background:var(--accent-soft)}
+.theme-control-host{display:flex;align-items:center;flex:none}.app>aside>.theme-control-host{margin-top:8px}
+.io-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:36px;padding:8px 13px;border:1px solid var(--color-border-secondary);border-radius:7px;font:500 12px/1.25 var(--sans);text-decoration:none;white-space:normal;cursor:pointer;transition:background-color 120ms ease,border-color 120ms ease,color 120ms ease}
+.io-button--primary{background:var(--color-interactive-primary);border-color:var(--color-interactive-primary);color:var(--color-content-inverse-primary)}
+.io-button--primary:hover:not(:disabled){background:var(--color-interactive-primary-hover);border-color:var(--color-interactive-primary-hover)}.io-button--primary:active:not(:disabled){background:var(--color-interactive-primary-press)}
+.io-button--secondary{background:var(--color-interactive-secondary);color:var(--color-content-primary)}.io-button--secondary:hover:not(:disabled){background:var(--color-interactive-secondary-hover)}.io-button--secondary:active:not(:disabled){background:var(--color-interactive-secondary-press)}
+.io-button--quiet{background:var(--color-interactive-tertiary);border-color:transparent;color:var(--color-content-primary)}.io-button--quiet:hover:not(:disabled){background:var(--color-interactive-tertiary-hover)}.io-button--quiet:active:not(:disabled){background:var(--color-interactive-tertiary-press)}
+.io-button:disabled{background:var(--color-surface-tertiary);border-color:var(--color-border-primary);color:var(--color-content-tertiary);cursor:not-allowed}.io-button:focus-visible{outline:2px solid var(--color-content-brand);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.io-button{transition:none}}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:10px;border:2px solid transparent;background-clip:padding-box}::-webkit-scrollbar-track{background:transparent}
+#boot{height:100%;display:grid;place-items:center;color:var(--muted);font-family:var(--mono)}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{opacity:.35}}

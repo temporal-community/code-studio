@@ -1,0 +1,26 @@
+{
+  "name": "code-studio",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "engines": { "node": ">=22.23.4" },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test:collaboration": "node scripts/test_document.mjs",
+    "test:editor": "node scripts/test_document.mjs tests/editor.test.mjs",
+    "test:theme": "node scripts/test_document.mjs tests/theme.test.mjs"
+  },
+  "dependencies": {
+    "@temporalio/agent-harness-svelte": "0.1.0",
+    "svelte": "5.57.1"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "5.1.1",
+    "svelte-check": "4.7.6",
+    "typescript": "5.9.3",
+    "vite": "6.4.1"
+  }
+}

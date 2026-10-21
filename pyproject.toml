@@ -1,0 +1,20 @@
+[project]
+name = "code-studio"
+version = "0.1.0"
+description = "Local PDLC starting point, based on Temporal Agent DAG Studio."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.28.1,<0.29",
+    "playwright>=1.51,<2",
+    "ruff==0.16.7",
+    "temporal-agent-harness[ui,openai-agents,code-mode]==0.6.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=9.0.3", "pytest-asyncio>=1.4.0"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]

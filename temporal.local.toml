@@ -1,0 +1,3 @@
+[profile.default]
+address = "localhost:7233"
+namespace = "code-studio"

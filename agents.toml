@@ -1,0 +1,50 @@
+# Registry of the shared Python collaborator and the original DAG example.
+#
+# `temporal-agent-harness serve` reads this file and passes the parsed registry into the
+# packaged SessionManagerWorkflow, which serves it back over the `available_agents` query.
+# DAG step agents are started by a running flow as subagents, never as their own sessions.
+
+[[agents]]
+key = "sdlc-builder"
+workflow_type = "SdlcBuilderAgent"
+agent = "agent_dag.sdlc_builder:SdlcBuilderAgentWorkflow"
+task_queue = "agent-dag"
+label = "SDLC agent builder"
+description = "Collaboratively edits and validates the shared Python PR-review agent project using local callbacks."
+
+[[agents]]
+key = "shared-python"
+workflow_type = "WorkspacePythonAgent"
+agent = "agent_dag.workspace_agent:WorkspacePythonAgentWorkflow"
+task_queue = "agent-dag"
+label = "Shared Python workspace"
+description = "A Python collaborator that reads and edits the shared app.py through callbacks executed by the local workspace host."
+
+[[agents]]
+key = "agent-dag"
+workflow_type = "DagBuilderAgent"
+agent = "agent_dag.workflow:DagBuilderAgentWorkflow"
+task_queue = "agent-dag"
+label = "Agent DAG Studio"
+description = """
+Describe a job and an OpenAI agent writes a *flow*: a Python script wiring fresh agents into a
+DAG, each set up by the script with its own name, system prompt, tools and model. The script
+lives in your editor, which the agent changes through callback tools. `execute` runs it in Code
+Mode, where each `run_agent` call starts a DagStepAgent subagent. Best driven from the studio UI
+(`just studio`)."""
+
+[[agents]]
+key = "feature-designer"
+workflow_type = "FeatureDesignerAgent"
+agent = "agent_dag.feature_designer:FeatureDesignerAgentWorkflow"
+task_queue = "agent-dag"
+label = "Feature builder designer"
+description = "Collaboratively edits and validates the feature builder's executable flow, planning and coding prompts, model settings, and file tools."
+
+[[agents]]
+key = "studio-designer"
+workflow_type = "StudioDesignerAgent"
+agent = "agent_dag.studio_designer:StudioDesignerAgentWorkflow"
+task_queue = "agent-dag"
+label = "SDLC agent designer"
+description = "Collaboratively customizes the selected lifecycle agent's Python flow, instructions, and tools."
